@@ -125,7 +125,7 @@ const DoctorDashboard = () => {
           {currentData.length > 0 ? (
             currentData.map((schedule, index) => (
               <div
-                className="flex items-center gap-3 px-6 py-3 hover:bg-gray-100"
+                className="flex items-center gap-3 px-6 py-3 hover:bg-gray-100 cursor-pointer"
                 key={index}
                 onClick={() => navigate(`/doctors/appointments/${schedule.id}`)}
               >
