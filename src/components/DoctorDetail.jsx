@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -31,6 +31,7 @@ const DoctorDetail = () => {
       path: `/users/booking/doctors/${doctorId}`,
     },
   ];
+
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const doctor = doctorsData.find((doc) => doc.id == doctorId);
@@ -43,6 +44,12 @@ const DoctorDetail = () => {
     correctedDate.setDate(correctedDate.getDate() + 1);
     return correctedDate.toISOString().split("T")[0];
   };
+
+  // useEffect to update selectedDate on component mount
+  useEffect(() => {
+    const correctedDate = getCorrectedDate(new Date());
+    setSelectedDate(new Date(correctedDate));
+  }, []); // Runs only once when component is mounted
 
   const filteredSchedule = scheduleData.filter(
     (schedule) =>
