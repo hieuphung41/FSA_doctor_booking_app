@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import doctorsData from "../seeds/doctorsData";
@@ -8,6 +8,7 @@ import CustomBreadcrumb from "./Breadcrumb";
 
 const DoctorDetail = () => {
   const { doctorId } = useParams();
+  const navigate = useNavigate();
   const breadcrumb = [
     {
       title: "Home",
@@ -113,6 +114,12 @@ const DoctorDetail = () => {
     setSelectedDate(date);
   };
 
+  const handleBookingClick = (timeSlot) => {
+    navigate(`/users/booking/doctors/${doctor.id}/form`, {
+      state: { doctor, timeSlot, selectedDate },
+    });
+  };
+
   return (
     <div className="container mx-auto">
       <div className="my-4">
@@ -142,6 +149,7 @@ const DoctorDetail = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {generateTimeSlots().map((slot, index) => (
               <button
+                onClick={() => handleBookingClick(slot.time)}
                 key={index}
                 className={`p-2 rounded border shadow-sm ${
                   slot.isBusy

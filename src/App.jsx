@@ -16,6 +16,7 @@ import DoctorDetail from "./components/DoctorDetail";
 import BookingDoctors from "./components/BookingDoctors";
 import BookingHospital from "./components/BookingHospital";
 import BookingMedicalExamination from "./components/BookingMedicalExamination";
+import BookingForm from "./components/BookingForm";
 
 function App() {
   return (
@@ -31,13 +32,20 @@ function App() {
           path="/doctors/appointments/:appointmentId"
           element={<DoctorAppointmentDetail />}
         />
-        <Route path="users/booking" element={<UserBookingAppointment />}>
+        <Route path="/users/booking" element={<UserBookingAppointment />}>
           <Route index element={<Navigate to="doctors" />} />
           <Route path="doctors" element={<BookingDoctors />} />
           <Route path="hospital" element={<BookingHospital />} />
           <Route path="medical" element={<BookingMedicalExamination />} />
         </Route>
-        <Route path="users/booking/doctors/:doctorId" element={<DoctorDetail />} />
+        <Route
+          path="/users/booking/doctors/:doctorId/form"
+          element={<BookingForm />}
+        />
+        <Route
+          path="/users/booking/doctors/:doctorId"
+          element={<DoctorDetail />}
+        />
         <Route path="/doctors/profile" element={<DoctorProfile />} />
         <Route path="/doctors/add" element={<AddDoctor />} />
         <Route path="/doctors/update/:id" element={<UpdateDoctor />} />
