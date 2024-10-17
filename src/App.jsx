@@ -17,6 +17,9 @@ import BookingDoctors from "./components/BookingDoctors";
 import BookingHospital from "./components/BookingHospital";
 import BookingMedicalExamination from "./components/BookingMedicalExamination";
 import BookingForm from "./components/BookingForm";
+import AdminDashboard from "./components/AdminDashboard";
+import AdminViewDoctors from "./components/AdminViewDoctors";
+import AdminViewPatients from "./components/AdminViewPatients";
 
 function App() {
   return (
@@ -38,6 +41,9 @@ function App() {
           <Route path="hospital" element={<BookingHospital />} />
           <Route path="medical" element={<BookingMedicalExamination />} />
         </Route>
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/view-doctors" element={<AdminViewDoctors />} />
+        <Route path="/admin/view-patients" element={<AdminViewPatients />} />
         <Route
           path="/users/booking/doctors/:doctorId/form"
           element={<BookingForm />}
